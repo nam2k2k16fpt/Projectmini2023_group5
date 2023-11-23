@@ -1,0 +1,33 @@
+.signin{
+    background-image: url('../image/banner2.png');
+    background-size: 20%;
+    
+}
+
+
+.signin{
+    padding-top: 11em;
+    height: 100vh;
+}
+
+.container-signin{
+    max-width:650px;
+    box-shadow: 8px 1px 27px 25px rgba(248,245,238,0.76);
+    background-color: #fff;
+    border-radius: 6px;
+}
+h2.heading-signin{
+    font-weight: 300;
+    font-size: 3em;
+    margin: 0.5em 0 0.2em 0;
+}
+
+heading-signin a{
+    color: #1A32BA;
+}
+
+.error-message{
+    font-size: 0.6em;
+    margin-left: 1em;
+    color: red;
+}
