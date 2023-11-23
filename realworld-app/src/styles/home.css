@@ -1,0 +1,29 @@
+
+.feed-toggle{
+    border-bottom: 1px solid #ddd;
+}
+.nav-optionArticle{
+    display: flex;
+    flex-direction: row;
+}
+
+ul.nav-optionArticle > li.nav-item{
+    list-style: none;
+    padding: 1em;
+
+}
+
+ul.nav-optionArticle > li.nav-item > a{
+    color: #1A32BA;
+    text-decoration: none;
+    opacity: 0.5;
+}
+
+li.active{
+    border-bottom: 1px solid #1A32BA;
+}
+
+li.active a{
+    opacity: 1 !important;
+    font-weight: 500;
+}  
