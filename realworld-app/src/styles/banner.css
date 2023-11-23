@@ -1,0 +1,10 @@
+.banner{
+    background-image: url('../image/banner.jpg');
+    background-size: 60%;
+    height: 240px;
+}
+
+.banner{
+    color: #1A32BA;
+}
+

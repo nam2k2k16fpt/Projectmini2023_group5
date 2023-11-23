@@ -1,0 +1,123 @@
+/* .hhhh{
+    background-color: #F8F5EE !important;
+}
+
+.name_page{
+    font-size: 0.6em;
+    line-height: 2.6em;
+    margin-left: 0.6em;
+    color: #1A32BA;
+}
+
+ul.navbar-nav > li.nav-item > a {
+    color: #1A32BA !important;
+}
+
+ul.navbar-nav > li.nav-item > a.active{
+    font-weight: 500;
+}
+
+ul.navbar-nav > li.nav-item:hover{
+    font-weight: 300;
+} */
+
+
+nav {
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #F8F5EE;
+    padding: 1em 4em;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+}
+
+.name_page {
+    font-size: 0.6em;
+    line-height: 2.7em;
+    margin-left: 0.6em;
+    color: #1A32BA;
+}
+
+#navbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#navbar li {
+    list-style: none;
+    padding: 0 1em;
+    position: relative;
+}
+
+#navbar li a {
+    text-decoration: none;
+    font-size: 1em;
+    font-weight: 600;
+    color: #7980a9;
+}
+
+#navbar li a i {
+    font-size: 19px;
+}
+
+#navbar li a:hover,
+#navbar li a.active {
+    color: #1A32BA
+}
+
+#navbar li a:hover::after,
+#navbar li a.active::after {
+    content: "";
+    width: 30%;
+    height: 2px;
+    background: #1A32BA;
+    position: absolute;
+    bottom: 0.1em;
+    left: 2em;
+
+}
+
+#mobile {
+    display: none;
+}
+
+#mobile i {
+    font-size: 1.5em;
+    color: #7980a9;
+    align-items: center;
+}
+
+@media screen and (max-width: 769px) {
+    #navbar {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        position: fixed;
+        top: 75px;
+        right: -300px;
+        width: 300px;
+        height: 100vh;
+        background-color: #F8F5EE;
+        box-shadow: 0 40px 60px rgba(0, 0, 0, 0.1);
+        padding: 40px 0 0 10px;
+        transition: 0.3s ease-in-out;
+    }
+
+    #navbar.active {
+        z-index: 99;
+        right: 0px;
+    }
+
+    #navbar li {
+        margin-bottom: 2em;
+    }
+
+    #mobile {
+        display: block;
+        cursor: pointer;
+    }
+
+
+}
