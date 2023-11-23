@@ -11,7 +11,7 @@ const Footer = () => {
     return (
         <div className='footer text-center mt-5'>
             <div className='pt-4 pb-2'>
-                <h4 className='h4 intro-footer mb-0 mt-4'>Let’s get started on something great</h4>
+                <h4 className='h4 intro-footer mb-0 mt-4'>Let’s get starte on something great</h4>
                 <p className='pharagraph'>Join us to share your knowledge and experience.</p>
             </div>
             <div className='link-network pb-3'>
