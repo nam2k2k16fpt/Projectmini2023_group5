@@ -1,0 +1,21 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root{
+    --color_1: #1A32BA;
+    --color_2: #F8F5EE;
+}
+
+.App{
+    background-color: var(--color_2);
+    text-align: center;
+}
+
+.App{
+    height: 100vh;
+}
+
+
+

@@ -1,9 +1,9 @@
 import './App.css';
-
+import ListRouter from './router'
 function App() {
   return (
-    <div className="App">
-     
+    <div className="App container-fluid p-0">
+      <ListRouter/>
     </div>
   );
 }
