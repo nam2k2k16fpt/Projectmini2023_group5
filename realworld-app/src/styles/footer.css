@@ -1,0 +1,46 @@
+.footer{
+    background-color: #1A32BA;
+    color: #fff;
+    
+}
+
+.intro-footer{
+    word-wrap: break-word;
+}
+
+.pharagraph{
+    font-weight: 700;
+    font-size: 1em;
+}
+
+ul.list-group > li.item-list{
+    list-style: none;
+    font-size: 2em;
+}
+
+.item-list:nth-child(even){
+    margin-right: 1em;
+}
+.item-list:nth-child(odd){
+    margin-right: 0.5em;
+}
+
+.item-list:nth-child(even) a{
+    color: #F8F5EE;
+}
+
+.item-list:nth-child(odd) a{
+    color: #000;
+}
+
+.item-list:nth-child(odd) a:hover{
+    color: #F8F5EE;
+}
+.item-list:nth-child(even) a:hover{
+    color: #000;
+}
+
+.pharagraph-end{
+    font-weight: 400;
+    font-size: 0.8em;
+}
