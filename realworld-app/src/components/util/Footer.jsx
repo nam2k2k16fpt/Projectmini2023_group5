@@ -50,7 +50,7 @@ const Footer = () => {
             </div>
             <div className='pb-3'>
                 <p className='pharagraph-end'>Knowledge Addict is a one-stop for budding content writers who loves to share their experiences with the world.
-                    <br /> Copyright © Addicts community  @ 2023</p>
+                    <br /></p>
             </div>
         </div>
     );
