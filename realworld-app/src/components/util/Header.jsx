@@ -5,12 +5,13 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { RiMenu5Line } from "react-icons/ri";
 import { VscNewFile } from "react-icons/vsc";
 import { HiOutlineWrenchScrewdriver } from "react-icons/hi2";
-import { CiFaceSmile } from "react-icons/ci";
 import '../../styles/header.css'
 import { useSelector } from 'react-redux';
 const Header = () => {
     const [statec, setstatec] = useState(false);
-    const user = useSelector((state) => state.auth.login.currentUser);
+    const currentUser = useSelector((state) => state.user.saveUserData.currentUser);
+    console.log('start');
+    
     return (
         <>
             <nav>
@@ -22,7 +23,7 @@ const Header = () => {
                 <div>
                     <ul id='navbar' className={statec ? "#navbar active mb-1" : "#navbar mb-1"}>
                         {
-                            user ?
+                             currentUser && currentUser.user ?
                                 (
                                     <>
                                         <li className="">
@@ -35,7 +36,7 @@ const Header = () => {
                                             <NavLink className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")} to="/settings"><i><HiOutlineWrenchScrewdriver /></i>&nbsp;&nbsp;Settings</NavLink>
                                         </li>
                                         <li className="">
-                                            <NavLink className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")} to="/ccc"><i><CiFaceSmile /></i>&nbsp;&nbsp;{user.user.username}</NavLink>
+                                            <NavLink className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")} to={`/@${currentUser?.user?.username}`}><img className='img-avatar' src={currentUser?.user?.image} alt='img_ava.png' />&nbsp;&nbsp;{currentUser?.user?.username}</NavLink>
                                         </li>
                                         <li className="">
                                             <NavLink className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")} to="/aboutus">Contact</NavLink>

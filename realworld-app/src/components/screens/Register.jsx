@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 import { Link, useNavigate } from 'react-router-dom';
 import NoFooter from '../layout/NoFooter';
 import { useDispatch } from 'react-redux';
-import { registerFailed, registerStart, registerSuccess } from '../../redux/authSlice';
+import { registerFailed, registerStart, registerSuccess } from '../../redux/userSlice';
 import axios from 'axios';
 
 const Register = () => {

@@ -88,6 +88,11 @@ nav {
     align-items: center;
 }
 
+.img-avatar{
+    width: 23px;
+    border-radius: 50%;
+}
+
 @media screen and (max-width: 769px) {
     #navbar {
         display: flex;

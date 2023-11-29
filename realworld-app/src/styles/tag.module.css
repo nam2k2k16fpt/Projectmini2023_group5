@@ -1,0 +1,40 @@
+.popular_tags {
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)
+}
+
+h5.heading_tags {
+    color: #1A32BA;
+    font-size: 1em;
+    padding: 1em;
+}
+
+ul.list_tags {
+    list-style: none;
+}
+
+ul.list_tags li.item_tag {
+    /* color: #969fd6; */
+}
+
+li.item_tag:first-child{
+    margin-bottom: 0.8em;
+}
+li.item_tag:not(:first-child):not(:last-child){
+    margin-top: 0.8em;
+    margin-bottom: 0.8em;
+}
+li.item-tag:last-child{
+    margin-top: 0.8em;
+}
+
+ul.list_tags li.item_tag  span{
+    border: 2px solid #1A32BA;
+    padding: 0 0.4em;
+    border-radius: 10px;
+    background-color: #969fd9;
+}
+
+ul.list_tags li.item_tag:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}

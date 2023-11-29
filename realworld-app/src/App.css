@@ -4,17 +4,13 @@
     box-sizing: border-box;
 }
 :root{
-    --color_1: #1A32BA;
+    --color_1: #;
     --color_2: #F8F5EE;
 }
 
 .App{
     background-color: var(--color_2);
     text-align: center;
-}
-
-.App{
-    height: 100vh;
 }
 
 

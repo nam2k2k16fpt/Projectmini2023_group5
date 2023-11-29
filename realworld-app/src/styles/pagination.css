@@ -1,0 +1,68 @@
+.cd-pagination {
+  text-align: center;
+}
+
+.cd-pagination li {
+  /* hide numbers on small devices */
+  display: none;
+  margin: 0 .2em;
+}
+
+.cd-pagination a,
+.cd-pagination span {
+  display: inline-block;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  /* use padding and font-size to change buttons size */
+  padding: .2em .6em;
+  font-size: 1.6rem;
+}
+
+.cd-pagination a {
+  color: #1A32BA !important;
+  border: 1px solid #e6e6e6;
+  border-radius: 0.25em;
+}
+
+.no-touch .cd-pagination a:hover {
+  background-color: #f2f2f2;
+}
+
+.cd-pagination a:active {
+  /* click effect */
+  -webkit-transform: scale(0.9);
+  -moz-transform: scale(0.9);
+  -ms-transform: scale(0.9);
+  -o-transform: scale(0.9);
+  transform: scale(0.9);
+}
+
+.cd-pagination a.disabled {
+  /* button disabled */
+  color: rgba(46, 64, 87, 0.4);
+  pointer-events: none;
+}
+
+button.btn-pagination {
+  color: #1A32BA !important;
+  border: 1px solid #e6e6e6;
+  border-radius: 0.25em;
+  padding: 0.2em 0.6em;
+  font-size: 1.6rem
+}
+
+.cd-pagination .current {
+  /* selected number */
+  background-color: #969fd6;
+  border-color: #969fd6;
+  color: #ffffff;
+  pointer-events: none;
+}
+
+@media only screen and (min-width: 768px) {
+  .cd-pagination li {
+    display: inline-block;
+  }
+}

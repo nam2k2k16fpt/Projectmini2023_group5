@@ -35,7 +35,8 @@ const Login = () => {
                                 }
                             })
                                 .then((response) => {
-                                    dispatch(loginSuccess(response.data));
+                                    // jwtToken
+                                    dispatch(loginSuccess(response.data.user.token));
                                     nav('/');
 
                                 })
@@ -58,7 +59,7 @@ const Login = () => {
                         {({ errors, touched }) => (
                             <Form className='col-12'>
                                 <div className='form-group'>
-<Field name="email" type="email" placeholder='Email' className={`form-control  ${errors.email && touched.email ? 'border-danger' : ''}`} />
+                                    <Field name="email" type="email" placeholder='Email' className={`form-control  ${errors.email && touched.email ? 'border-danger' : ''}`} />
                                     <span className='error-message'><ErrorMessage name="email" /></span>
                                 </div>
                                 <div className='form-group'>
