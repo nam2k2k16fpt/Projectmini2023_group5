@@ -22,11 +22,11 @@ function App() {
       })
         .catch(() => dispatch(saveUserDataFailed()));
     }
-  }, [jwtToken]);
+  }, [jwtToken, dispatch]);
+
+  
   return (
-    <div className="App container-fluid p-0">
-      <ListRouter />
-    </div>
+    <ListRouter />
   );
 }
 

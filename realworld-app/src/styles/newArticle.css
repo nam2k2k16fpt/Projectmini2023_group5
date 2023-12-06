@@ -1,0 +1,25 @@
+ .tag {
+     display: block;
+     float: left;
+     padding: 5px 9px;
+     text-decoration: none;
+     margin-right: 5px;
+     font-weight: 500;
+     margin-bottom: 5px;
+     font-family: helvetica;
+     line-height: 1;
+     background: #969fd6;
+     color: #fff !important;
+ }
+
+
+ .hash-list {
+     font-size: 12px;
+     margin-top: 0.7em;
+ }
+
+ .remove-tag {
+     cursor: pointer;
+     padding: 2px;
+     margin-left: 5px;
+ }

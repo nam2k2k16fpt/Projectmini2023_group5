@@ -4,7 +4,7 @@ import axios from "axios";
 const deleteFavorite = createAsyncThunk('favorite/deleteFavorite', async ({ slug }, { getState }) => {
     const { auth } = getState();
     const token = auth.login.jwtToken;
-    const response = await axios.delete(`https://api.realworld.io/api/articles/${slug}/favorite`,{
+    const response = await axios.delete(`https://api.realworld.io/api/articles/${slug}/favorite`, {
         headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
@@ -38,7 +38,7 @@ const postFavorite = createAsyncThunk('favorite/postFavorite', async ({ slug }, 
 const followSlice = createSlice({
     name: 'favorite',
     initialState: {
-        changeFavorite: 0,
+        favorites: {},
         loadingFavorite: false,
         errorFavorite: null
     },
@@ -51,8 +51,9 @@ const followSlice = createSlice({
                 state.errorFavorite = null;
             })
             .addCase(deleteFavorite.fulfilled, (state, action) => {
+                const { slug } = action.meta.arg;
+                state.favorites[slug] = false; 
                 state.loadingFavorite = false;
-                state.changeFavorite = action.payload - 1;
             })
             .addCase(deleteFavorite.rejected, (state, action) => {
                 state.errorFavorite = action.error.message;
@@ -62,8 +63,9 @@ const followSlice = createSlice({
                 state.errorFavorite = null;
             })
             .addCase(postFavorite.fulfilled, (state, action) => {
+                const { slug } = action.meta.arg;
+                state.favorites[slug] = true; 
                 state.loadingFavorite = false;
-                state.changeFavorite = action.payload + 1;
             })
             .addCase(postFavorite.rejected, (state, action) => {
                 state.errorFavorite = action.error.message;

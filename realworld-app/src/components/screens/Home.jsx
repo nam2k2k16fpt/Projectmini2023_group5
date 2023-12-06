@@ -5,12 +5,11 @@ import TagList from '../TagList';
 import { Link } from 'react-router-dom';
 import ArticleList from '../ArticleList';
 import { IoPricetagOutline } from "react-icons/io5";
-import '../../styles/home.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { getGlobalFeed, getYourFeed, setCurrentPage, setOffset, setTagSelect } from '../../redux/articleSlice';
 import { getTags } from '../../redux/tagsSlice';
+import '../../styles/home.css'
 const Home = () => {
-    const limit = 10
     const dispatch = useDispatch();
     const tagSelect = useSelector((state) => state.articles.tagSelect);
     const jwtToken = useSelector((state) => state.auth.login.jwtToken);
@@ -25,26 +24,26 @@ const Home = () => {
     useEffect(() => {
         // console.log(jwtToken);
         if (jwtToken) {
-            dispatch(getYourFeed({ offset: offset }));
+            dispatch(getYourFeed({ offset: offset, limit: 10 }));
         }
         if (toggle === 'TAG') {
-            console.log(tagSelect);
-            dispatch(getGlobalFeed({ offset: offset, tag: tagSelect }));
+            // console.log(tagSelect);
+            dispatch(getGlobalFeed({ offset: offset, tag: tagSelect, limit: 10 }));
 
         }
         if (toggle === 'GLOBAL') {
-            console.log(tagSelect);
-            dispatch(getGlobalFeed({ offset: offset }));
+            // console.log(tagSelect);
+            dispatch(getGlobalFeed({ offset: offset, limit: 10 }));
         }
         dispatch(getTags());
-    }, [tagSelect, offset, jwtToken, toggle])
+    }, [tagSelect, offset, jwtToken, toggle, dispatch])
 
 
 
     return (
         <Default>
             {jwtToken ? '' : <Banner />}
-            <div className='container page'>
+            <div className='container page' style={{ minHeight: '100vh' }}>
                 <div className='row'>
                     <div className='col-md-10'>
                         <div className="feed-toggle">
@@ -69,7 +68,6 @@ const Home = () => {
                             </ul>
                         </div>
                         <ArticleList
-                            limit={limit}
                             toggle={toggle}
                             articlesGlobal={globalFeed}
                             articlesYour={yourFeed}

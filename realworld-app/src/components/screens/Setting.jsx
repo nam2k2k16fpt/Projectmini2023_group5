@@ -17,7 +17,8 @@ const Setting = () => {
     const handleClick = () => {
         dispatch(updateUserInfo(null));
         persistor.purge();
-        nav("/");
+        dispatch(getGlobalFeed());
+        window.location.reload();
     }
     console.log(currentUser);
 
@@ -40,7 +41,7 @@ const Setting = () => {
                                     username: `${currentUser.user.username}`,
                                     bio: `${currentUser.user.bio}`,
                                     email: `${currentUser.user.email}`,
-                                    newpassword: ''
+                                    password: ''
                                 }}
                                 onSubmit={(values) => {
                                     console.log(values);
@@ -82,7 +83,7 @@ const Setting = () => {
                                             <Field name="email" type="email" className="form-control form-control-lg" value={values.email} />
                                         </div>
                                         <div className='form-group'>
-                                            <Field name="newpassword" type="password" className="form-control form-control-lg" placeholder="New Password" />
+                                            <Field name="password" type="password" className="form-control form-control-lg" placeholder="New Password" />
                                         </div>
                                         <div className='form-group border-bottom overflow-auto'>
                                             <button type="submit" className='btn btn-lg d-flex float-right my-3' style={{ backgroundColor: '#1A32BA', color: "#fff" }}>Update Settings</button>

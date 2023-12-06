@@ -5,6 +5,9 @@ import articlesReducer from './articleSlice'
 import tagsReducer from './tagsSlice';
 import favoriteReducer from './favoriteSlice'
 import followReducer from './followSlice'
+import articleDetailReducer from './articleDetailSlice'
+import profileReducer from './profileSlice'
+import commentReducer from './commentSlice'
 import {
   persistStore,
   persistReducer,
@@ -29,7 +32,10 @@ const rootReducer = combineReducers({
   articles: articlesReducer,
   tags: tagsReducer,
   favorite: favoriteReducer,
-  follow : followReducer
+  follow : followReducer,
+  article_detail: articleDetailReducer,
+  profile: profileReducer,
+  comment: commentReducer
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

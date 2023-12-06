@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux';
 const Header = () => {
     const [statec, setstatec] = useState(false);
     const currentUser = useSelector((state) => state.user.saveUserData.currentUser);
-    console.log('start');
+    console.log('Header',currentUser);
     
     return (
         <>

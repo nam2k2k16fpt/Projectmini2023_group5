@@ -1,4 +1,3 @@
-import React from 'react';
 import { useMemo } from 'react';
 
 export const DOTS = '...';
@@ -18,7 +17,7 @@ export const usePagination = ({
     const totalPageCount = Math.ceil(totalCount / pageSize);
 
     // Pages count is determined as siblingCount + firstPage + lastPage + currentPage + 2*DOTS
-    const totalPageNumbers = siblingCount + 5;
+    const totalPageNumbers = siblingCount + 3;
 
     /*
       If the number of pages is less than the page numbers we want to show in our

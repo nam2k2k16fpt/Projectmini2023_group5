@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react';
 import { FaArrowLeft } from "react-icons/fa6";
 import { FaArrowRight } from "react-icons/fa6";
 import '../../styles/pagination.css'
@@ -8,36 +7,37 @@ const Pagination = (props) => {
     const { offset, totalCount, currentPage, pageSize, siblingCount = 1, onPageChange, onOffsetChange } = props
 
     console.log(offset,totalCount,currentPage);
-
     const paginationRange = usePagination({
         currentPage,
         totalCount,
         siblingCount,
         pageSize
     });
+    // console.log(paginationRange.length);
+
 
     if (currentPage === 0 || paginationRange.length < 2) {
         return null;
     }
 
     const onNext = () => {
-        onOffsetChange(offset + 10);
+        onOffsetChange(offset + pageSize);
         onPageChange(currentPage + 1);
 
     };
 
     const onPrevious = () => {
-        onOffsetChange(offset - 10);
+        onOffsetChange(offset - pageSize);
         onPageChange(currentPage - 1);
     };
 
     const handleClickNumberReal = (num) => {
-        console.log(currentPage,num);
+        // console.log(currentPage, num);
         if (currentPage > num) {
-            let newoffset = (currentPage - 1) * 10 - 10 * (currentPage - num);
+            let newoffset = (currentPage - 1) * pageSize - pageSize * (currentPage - num);
             onOffsetChange(newoffset);
         } else if (currentPage < num) {
-            let newoffset = (num - 1) * 10;
+            let newoffset = (num - 1) * pageSize;
             onOffsetChange(newoffset);
         }
         onPageChange(num);

@@ -1,4 +1,3 @@
-
 .article-content__author_meta {}
 
 .article-author {
@@ -19,7 +18,7 @@
     margin-left: 0.4em;
 }
 
-a.link_author{
+a.link_author {
     color: #1A32BA !important;
     font-weight: 500;
 }
@@ -33,11 +32,11 @@ a.link_author{
     font-size: 0.7em;
 }
 
-.bg_bg1{
+.bg_bg1 {
     background-color: #1A32BA;
     color: #fff;
-    }
-    
+}
+
 
 .heart-article {
     border: 3px solid #1a32ba;
@@ -47,8 +46,12 @@ a.link_author{
     cursor: pointer;
 }
 
-.article-content__title {
-    color: #1A32BA;
+
+
+.article-content__title a {
+    text-decoration: none;
+    color: #1A32BA !important;
+
 }
 
 .article-tag {}
@@ -101,9 +104,14 @@ ul.list-tag li:not(:first-child):not(:last-child) {
 }
 
 .pharagraph-desc {
-    color: #fff;
     font-size: 2em;
     font-weight: 200;
+}
+
+
+.pharagraph-desc a {
+    color: #fff !important;
+    text-decoration: none;
 }
 
 .read-more {
@@ -111,6 +119,6 @@ ul.list-tag li:not(:first-child):not(:last-child) {
     color: #7980a9;
 }
 
-.read-more{
+.read-more {
     border-bottom: 1px solid #969fd6;
 }

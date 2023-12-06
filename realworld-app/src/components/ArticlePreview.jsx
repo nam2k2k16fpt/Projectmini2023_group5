@@ -4,30 +4,34 @@ import { CiHeart } from "react-icons/ci";
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteFavorite, postFavorite } from '../redux/favoriteSlice';
-import { getGlobalFeed, getYourFeed } from '../redux/articleSlice';
+import { displayDate } from '../util/Helper';
+import { useState } from 'react';
 
-const ArticlePreview = ({ itemArticle, toggle }) => {
+const ArticlePreview = ({ itemArticle }) => {
     const jwtToken = useSelector(state => state.auth.login.jwtToken);
-    const offset = useSelector(state => state.articles.offset);
-    const tagSelect = useSelector((state) => state.articles.tagSelect);
+    const [article, setArticle] = useState(itemArticle);
     const nav = useNavigate();
     const dispatch = useDispatch();
+    // console.log('Before article :', itemArticle);
+
+
+    useEffect(() => {
+        setArticle(itemArticle);
+    }, [itemArticle]);
 
 
 
-
-    const handleFavoriteArticle = (slug, statusFavorite) => {
+    const handleFavoriteArticle = async (slug, statusFavorite) => {
         if (!jwtToken) {
             nav('/register');
         } else {
-            dispatch(statusFavorite ? deleteFavorite({ slug: slug }) : postFavorite({ slug: slug }));
-            if (toggle === 'GLOBAL') {
-                dispatch(getGlobalFeed({ offset: offset }));
-            } else if (toggle === 'TAG') {
-                dispatch(getGlobalFeed({ offset: offset, tag: tagSelect }));
-            }
-            else {
-                dispatch(getYourFeed({ offset: offset }));
+            try {
+                const resultAction = await dispatch(statusFavorite ? deleteFavorite({ slug: slug }) : postFavorite({ slug: slug }));
+                const updatedFavoritesCount = resultAction.payload.article.favoritesCount;
+                const updatedArticle = { ...article, favorited: !statusFavorite, favoritesCount: updatedFavoritesCount };
+                setArticle(updatedArticle);
+            } catch (error) {
+                console.log(error);
             }
         }
     }
@@ -43,33 +47,36 @@ const ArticlePreview = ({ itemArticle, toggle }) => {
                                 <div className='article-author'>
                                     <div className="avatar-name">
                                         <Link to="/" className="">
-                                            <img src={itemArticle.author.image} alt='' className='img-thumbnail' style={{ width: '42px', height: '43px' }} />
+                                            <img src={article.author.image} alt='' className='img-thumbnail' style={{ width: '42px', height: '43px' }} />
                                         </Link>
                                     </div>
                                     <div className='post-author__info'>
                                         <div className=''>
-                                            <Link to="/" className='link_author'>{itemArticle.author.username}</Link>
+                                            <Link to={`/@${article.author.username}`} className='link_author'>{article.author.username}</Link>
                                         </div>
                                         <div className='post_date'>
-                                            {/* 2023-11-27T16:11:40.402Z */}
-                                            <span>{itemArticle.createdAt}</span>
+                                            <span>{displayDate(article.createdAt)}</span>
                                         </div>
                                     </div>
 
                                 </div>
                                 <div className='article-meta'>
-                                    <div className={itemArticle.favorited ? 'heart-article bg_bg1' : 'heart-article'} onClick={() => handleFavoriteArticle(itemArticle.slug, itemArticle.favorited)}>
-                                        <span style={{ fontSize: "1.4em" }}>{itemArticle.favorited ? <CiHeart /> : <>💙</>}&nbsp;</span>
-                                        <span>{itemArticle.favoritesCount}</span>
+                                    <div className={article.favorited ? 'heart-article bg_bg1' : 'heart-article'} onClick={() => handleFavoriteArticle(article.slug, article.favorited)}>
+                                        <span style={{ fontSize: "1.4em" }}>{article.favorited ? <CiHeart /> : <>💙</>}&nbsp;</span>
+                                        <span>{article.favoritesCount}</span>
                                     </div>
                                 </div>
                             </div>
-                            <h3 className='mt-4 article-content__title text-left'>{itemArticle.title}</h3>
+                            <h3 className='mt-4 article-content__title text-left'>
+                                <Link to={`/article/${article.slug}`} >
+                                    {article.title}
+                                </Link>
+                            </h3>
                         </header>
                         <div className='article-tag'>
                             <ul className='list-tag'>
                                 {
-                                    itemArticle.tagList.map((itemTag, index) => (
+                                    article.tagList.map((itemTag, index) => (
                                         <li className='item-tag' key={index}> #{itemTag}</li>
                                     ))
                                 }
@@ -80,14 +87,16 @@ const ArticlePreview = ({ itemArticle, toggle }) => {
                                 <img src={ThumbnailImg} alt="" className="thumbnail__project__recent" />
                                 <div className="content_description">
                                     <p className="pharagraph-desc text-left">
-                                        {itemArticle.description}
+                                        <Link to={`/article/${article.slug}`} >
+                                            {article.description}
+                                        </Link>
                                     </p>
                                 </div>
                             </div>
                         </div>
                     </article>
                     <div className='mt-5 text-left'>
-                        <p className='read-more'>Read more ...</p>
+                        <p className='read-more'><Link to={`/article/${article.slug}`}>Read more ...</Link></p>
                     </div>
 
                 </div>
