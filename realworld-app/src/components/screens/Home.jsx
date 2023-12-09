@@ -20,14 +20,16 @@ const Home = () => {
     const loadingYourFeed = useSelector((state) => state.articles.loadingYourFeed);
     const offset = useSelector(state => state.articles.offset);
 
+    console.log('Home Loading g',loadingGlobalFeed);
+    console.log('Home Loading y',loadingYourFeed);
 
     useEffect(() => {
-        // console.log(jwtToken);
         if (jwtToken) {
+            console.log('DA DANG NHAP');
             dispatch(getYourFeed({ offset: offset, limit: 10 }));
         }
         if (toggle === 'TAG') {
-            // console.log(tagSelect);
+            console.log(tagSelect);
             dispatch(getGlobalFeed({ offset: offset, tag: tagSelect, limit: 10 }));
 
         }
@@ -71,7 +73,7 @@ const Home = () => {
                             toggle={toggle}
                             articlesGlobal={globalFeed}
                             articlesYour={yourFeed}
-                            loading={loadingGlobalFeed || loadingYourFeed}
+                            loadingGlobalFeed={loadingGlobalFeed || loadingYourFeed}
                         />
                     </div>
                     <div className='col-md-2'>

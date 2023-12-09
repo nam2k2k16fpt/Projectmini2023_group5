@@ -5,17 +5,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { setCurrentPage, setOffset, settotalArticle} from "../redux/articleSlice";
 import '../styles/article.css'
 const ArticleList = ({toggle, articlesGlobal, articlesYour, loading }) => {
-
     const dispatch = useDispatch();
     const currentPage = useSelector(state => state.articles.currentPage);
     const totalArticle = useSelector(state => state.articles.totalArticle);
     const offset = useSelector(state => state.articles.offset);
 
-
+    console.log('Article List: ',totalArticle);
 
     useEffect(() => {
         // console.log('articlesGlobal',articlesGlobal);
-        // console.log(toggle);
+        console.log(toggle);
         if (toggle === 'YOUR') {
             dispatch(settotalArticle(articlesYour.articlesCount));
         } else if (toggle === 'GLOBAL') {
@@ -29,7 +28,7 @@ const ArticleList = ({toggle, articlesGlobal, articlesYour, loading }) => {
     return (
         <div className="row">
             {
-                toggle === 'YOUR' ?
+                toggle === 'YOUR' && !loading ?
                     (
                         <>
                             {
@@ -59,7 +58,7 @@ const ArticleList = ({toggle, articlesGlobal, articlesYour, loading }) => {
 
                                     )
                                     :
-                                    (<div>No articles are here... yet.</div>)
+                                    (<div>Loading Article...</div>)
 
                             }
                         </>

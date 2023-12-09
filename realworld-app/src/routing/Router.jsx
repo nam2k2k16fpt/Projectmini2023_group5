@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import Home from '../components/screens/Home';
 import Login from '../components/screens/Login';
 import Register from '../components/screens/Register';
@@ -8,7 +8,19 @@ import ProtectedRoute from './ProtectedRoute';
 import ArticleDetail from '../components/screens/ArticleDetail';
 import ProfileRouter from '../routing/ProfileRouter'
 import FavoriteArticle from '../components/FavoriteArticle';
+import { useDispatch } from 'react-redux';
+import { resetOption } from '../redux/articleSlice';
+import { useEffect } from 'react';
 const Router = () => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    useEffect(() => {
+        if (location.pathname === '/') {
+            dispatch(resetOption({ resetPage: 1, resetOffset: 0, resetTag: '', resetTotal: 0 }));
+        }
+    }, [location.pathname, dispatch]);
     return (
         <div className="App container-fluid p-0">
             <Routes>

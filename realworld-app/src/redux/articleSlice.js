@@ -137,7 +137,7 @@ const deleteArticle = createAsyncThunk('article/deleteArticle', async ({ slug },
             }
         })
 
-        // console.log(res.data);
+        console.log('delete: ',res.data);
         return res.data;
     } catch (error) {
         return rejectWithValue(error.response.data);
@@ -186,6 +186,7 @@ const articlesSlice = createSlice({
         },
         setTagSelect: (state, action) => {
             state.tagSelect = action.payload;
+            state.loadingGlobalFeed = false;
         },
         resetOption: (state, action) => {
             state.currentPage = action.payload.resetPage;

@@ -10,8 +10,8 @@ import { useSelector } from 'react-redux';
 const Header = () => {
     const [statec, setstatec] = useState(false);
     const currentUser = useSelector((state) => state.user.saveUserData.currentUser);
-    console.log('Header',currentUser);
-    
+    const loading = useSelector((state) => state.user.saveUserData.isFetching);
+
     return (
         <>
             <nav>
@@ -23,25 +23,28 @@ const Header = () => {
                 <div>
                     <ul id='navbar' className={statec ? "#navbar active mb-1" : "#navbar mb-1"}>
                         {
-                             currentUser && currentUser.user ?
+                            currentUser && currentUser.user ?
                                 (
-                                    <>
-                                        <li className="">
-                                            <NavLink className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")} to="/">Home</NavLink>
-                                        </li>
-                                        <li className="">
-                                            <NavLink className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")} to="/editor"> <i><VscNewFile /></i>&nbsp;&nbsp;New&nbsp;Article</NavLink>
-                                        </li>
-                                        <li className="">
-                                            <NavLink className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")} to="/settings"><i><HiOutlineWrenchScrewdriver /></i>&nbsp;&nbsp;Settings</NavLink>
-                                        </li>
-                                        <li className="">
-                                            <NavLink className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")} to={`/@${currentUser?.user?.username}`}><img className='img-avatar' src={currentUser?.user?.image} alt='img_ava.png' />&nbsp;&nbsp;{currentUser?.user?.username}</NavLink>
-                                        </li>
-                                        <li className="">
-                                            <NavLink className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")} to="/aboutus">Contact</NavLink>
-                                        </li>
-                                    </>
+                                    !loading ?
+                                        <>
+                                            <li className="">
+                                                <NavLink className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")} to="/">Home</NavLink>
+                                            </li>
+                                            <li className="">
+                                                <NavLink className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")} to="/editor"> <i><VscNewFile /></i>&nbsp;&nbsp;New&nbsp;Article</NavLink>
+                                            </li>
+                                            <li className="">
+                                                <NavLink className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")} to="/settings"><i><HiOutlineWrenchScrewdriver /></i>&nbsp;&nbsp;Settings</NavLink>
+                                            </li>
+                                            <li className="">
+                                                <NavLink className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")} to={`/@${currentUser?.user?.username}`}><img className='img-avatar' src={currentUser?.user?.image} alt='img_ava.png' />&nbsp;&nbsp;{currentUser?.user?.username}</NavLink>
+                                            </li>
+                                            <li className="">
+                                                <NavLink className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")} to="/aboutus">Contact</NavLink>
+                                            </li>
+                                        </>
+                                        : 
+                                        ''
                                 )
                                 :
                                 (

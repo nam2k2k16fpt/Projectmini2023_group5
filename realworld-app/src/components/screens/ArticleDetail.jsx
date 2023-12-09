@@ -28,6 +28,7 @@ const ArticleDetail = () => {
     const nav = useNavigate();
     const dispatch = useDispatch();
     const loadingArticleDetail = useSelector((state) => state.article_detail.loadingArticleDetail);
+    const loadingDeleteArticle = useSelector((state) => state.articles.loadingDeleteArticle)
     const { article } = useSelector((state) => state.article_detail.articleDetail);
     const { comments } = useSelector((state) => state.comment.listComment);
     const jwtToken = useSelector(state => state.auth.login.jwtToken);
@@ -36,7 +37,9 @@ const ArticleDetail = () => {
     const [follow, setFollow] = useState(article?.author?.following || false);
     const [articleV2, setArticleV2] = useState(article);
 
-    console.log(comments);
+    // console.log(comments);
+    console.log('article2: ',articleV2);
+    console.log('loadingArticleDetail',loadingArticleDetail);
     useEffect(() => {
         setArticleV2(article);
     }, [article]);
@@ -119,8 +122,10 @@ const ArticleDetail = () => {
 
     const handleDeleteArticle = async () => {
         try {
-            await dispatch(deleteArticle({ slug: `${param.titleArticle}` }));
-            nav('/');
+            await dispatch(deleteArticle({ slug: `${param.titleArticle}` }))
+            if(!loadingDeleteArticle){
+                nav('/');
+            }
             console.log('Successfull');
         } catch (error) {
             console.log('error:', error);

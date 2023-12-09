@@ -20,10 +20,10 @@ const NewArticle = ({ type }) => {
     const param = useParams();
 
     function validateDescription(value) {
-        // console.log(value);
+        console.log(value);
         let error;
         if (!value) {
-            error = '* Required title not blank';
+            error = '* Required description not blank';
         }
         return error;
     }
@@ -35,27 +35,28 @@ const NewArticle = ({ type }) => {
         let flag = false;
         if (!value) {
             error = '* Required title not blank';
-        } else {
-            await dispatch(getOwnArticle({ username: userData?.user?.username }))
-                .then((response) => {
-                    if (type === 'UPDATE') {
-                        const currentArticleTitle = article?.title || ''; 
-        
-                        if (value !== currentArticleTitle) {
-                            flag = response.payload.articles.some((article, index) => article.title === value);
-                        }
-                    } else {
-                        flag = response.payload.articles.some((article, index) => article.title === value);
-                    }
-                })
-                .catch((error) => {
-                    console.error('Error', error);
-                });
+            // } else {
+            //     await dispatch(getOwnArticle({ username: userData?.user?.username }))
+            //         .then((response) => {
+            //             if (type === 'UPDATE') {
+            //                 const currentArticleTitle = article?.title || ''; 
 
-            console.log(flag);
-            flag && (error = '* Title must be unique')
+            //                 if (value !== currentArticleTitle) {
+            //                     flag = response.payload.articles.some((article, index) => article.title === value);
+            //                 }
+            //             } else {
+            //                 flag = response.payload.articles.some((article, index) => article.title === value);
+            //             }
+            //         })
+            //         .catch((error) => {
+            //             console.error('Error', error);
+            //         });
+
+            //     console.log(flag);
+            //     flag && (error = '* Title must be unique')
+            // }
+            return error;
         }
-        return error;
     }
 
 
@@ -63,11 +64,11 @@ const NewArticle = ({ type }) => {
         // console.log(value)
         let error;
         if (value === '<p></p>') {
-            error = '* Required title not blank';
+            error = '* Required body not blank';
             console.log(1);
         }
         else if (!value) {
-            error = '* Required title not blank';
+            error = '* Required body not blank';
         }
         return error;
     }
