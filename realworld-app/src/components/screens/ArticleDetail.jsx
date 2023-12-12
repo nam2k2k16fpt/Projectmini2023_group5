@@ -28,7 +28,6 @@ const ArticleDetail = () => {
     const nav = useNavigate();
     const dispatch = useDispatch();
     const loadingArticleDetail = useSelector((state) => state.article_detail.loadingArticleDetail);
-    const loadingDeleteArticle = useSelector((state) => state.articles.loadingDeleteArticle)
     const { article } = useSelector((state) => state.article_detail.articleDetail);
     const { comments } = useSelector((state) => state.comment.listComment);
     const jwtToken = useSelector(state => state.auth.login.jwtToken);
@@ -37,9 +36,7 @@ const ArticleDetail = () => {
     const [follow, setFollow] = useState(article?.author?.following || false);
     const [articleV2, setArticleV2] = useState(article);
 
-    // console.log(comments);
-    console.log('article2: ',articleV2);
-    console.log('loadingArticleDetail',loadingArticleDetail);
+    console.log(comments);
     useEffect(() => {
         setArticleV2(article);
     }, [article]);
@@ -122,10 +119,8 @@ const ArticleDetail = () => {
 
     const handleDeleteArticle = async () => {
         try {
-            await dispatch(deleteArticle({ slug: `${param.titleArticle}` }))
-            if(!loadingDeleteArticle){
-                nav('/');
-            }
+            await dispatch(deleteArticle({ slug: `${param.titleArticle}` }));
+            nav('/');
             console.log('Successfull');
         } catch (error) {
             console.log('error:', error);
@@ -220,12 +215,12 @@ const ArticleDetail = () => {
                                                                 currentUser?.user?.username === articleV2.author.username ? (
                                                                     <>
                                                                         <div className={`${style.Reaction_btnReact}`} title='Edit Article'>
-                                                                            <button role='button' onClick={() => nav(`/editor/${param.titleArticle}`)}>
-                                                                                <i><GoPencil />&nbsp;&nbsp;</i> Edit Article
+                                                                            <button className={`${style.edit}`} role='button' onClick={() => nav(`/editor/${param.titleArticle}`)}>
+                                                                                <i ><GoPencil />&nbsp;&nbsp;</i> Edit Article
                                                                             </button>
                                                                         </div>
                                                                         <div className={`${style.Reaction_btnReact}`} title='Delete Article'>
-                                                                            <button role='button' onClick={handleDeleteArticle}>
+                                                                            <button className={`${style.edit}`} role='button' onClick={handleDeleteArticle}>
                                                                                 <i><RiDeleteBin6Line />&nbsp;&nbsp;</i> Delete Article
                                                                             </button>
                                                                         </div>

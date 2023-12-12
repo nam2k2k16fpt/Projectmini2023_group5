@@ -2,10 +2,11 @@ import React from 'react';
 import { Field, Formik, Form } from "formik";
 import * as Yup from 'yup';
 import { Link, useParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { postCommentOfArticle } from '../redux/commentSlice';
 
 const Comment = ({ onAddComment }) => {
+    const currentUser = useSelector((state) => state.user.saveUserData.currentUser);
     const dispatch = useDispatch();
     const param = useParams();
     return (
@@ -44,7 +45,7 @@ const Comment = ({ onAddComment }) => {
                             </div>
                             <div className='post-author__info'>
                                 <div className=''>
-                                    <Link to='/' className='link_author'>NamNH</Link>
+                                    <Link to='/' className='link_author'>{currentUser?.user?.username}</Link>
                                 </div>
                                 <div className='post_date'>
                                     <span>mm-dd-yyyy</span>

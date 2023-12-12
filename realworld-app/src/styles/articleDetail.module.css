@@ -126,3 +126,10 @@ img.avatar_photo {
 main {
     border-bottom: 1px solid #ccc;
 }
+.edit{
+    color: aliceblue;
+    background-color: #1A32BA;
+    border: none;
+    border-radius: 0.2rem;
+    padding: 5px;
+}

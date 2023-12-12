@@ -32,7 +32,7 @@ const ArticleList = ({toggle, articlesGlobal, articlesYour, loading }) => {
                     (
                         <>
                             {
-                                articlesYour && articlesYour?.articles?.length > 0 ?
+                                     articlesYour?.articles?.length > 0 ?
                                     (
                                         <>
                                             {
@@ -58,7 +58,7 @@ const ArticleList = ({toggle, articlesGlobal, articlesYour, loading }) => {
 
                                     )
                                     :
-                                    (<div>Loading Article...</div>)
+                                    (<div>No articles are here... yet.</div>)
 
                             }
                         </>
